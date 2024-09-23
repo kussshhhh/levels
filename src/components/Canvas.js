@@ -4,7 +4,7 @@ import Node from './Node';
 
 const Canvas = () => {
   const [nodes, setNodes] = useState([
-    { id: 1, level: 1, text: '', position: { x: 50, y: 50 } },
+    { id: 1, level: 1, text: '', position: { x: 50, y: 400 } },
   ]);
   const [scale, setScale] = useState(1);
   const canvasRef = useRef(null);
@@ -45,18 +45,21 @@ const Canvas = () => {
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '600px', border: '1px solid #ccc', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', width: '100%', height: '100vh', border: '1px solid #ccc', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1000 }}>
         <button onClick={() => handleZoom(0.1)}><ZoomIn size={20} /></button>
         <button onClick={() => handleZoom(-0.1)}><ZoomOut size={20} /></button>
       </div>
       <div
         ref={canvasRef}
+      
+        className='canvas'
         style={{
           transform: `scale(${scale})`,
           transformOrigin: 'top left',
           width: '100%',
           height: '100%',
+          zIndex:  5 
         }}
       >
         <svg
@@ -92,6 +95,7 @@ const Canvas = () => {
             onAddNode={addNode}
             onUpdateNode={updateNode}
             onDrag={handleDrag}
+            zIndex='1000'
           />
         ))}
       </div>
