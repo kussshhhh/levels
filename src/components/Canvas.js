@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { PlusCircle, ZoomIn, ZoomOut } from 'lucide-react';
 import Node from './Node';
+import AudioPlay from './AudioPlayer';
 
 const Canvas = () => {
   const [nodes, setNodes] = useState([
@@ -59,7 +60,6 @@ const Canvas = () => {
           transformOrigin: 'top left',
           width: '100%',
           height: '100%',
-          zIndex:  5 
         }}
       >
         <svg
@@ -98,6 +98,16 @@ const Canvas = () => {
             zIndex='1000'
           />
         ))}
+      </div>
+      <div
+        style={{
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
+          zIndex: 2000,
+        }}
+      >
+        <AudioPlay/>
       </div>
     </div>
   );

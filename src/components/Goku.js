@@ -74,6 +74,7 @@ const Goku = ({ gifUrl }) => {
             position: 'absolute',
             left: `${position}px`,
             display: imageLoaded ? 'block' : 'none',
+            
           }}
         />
       )}

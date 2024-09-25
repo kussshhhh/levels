@@ -12,7 +12,7 @@ const Clouds = () => {
 
   const initialClouds = () => {
     const clouds = [];
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 30; i++) {
       clouds.push(createCloud(true));
     }
     return clouds;
@@ -41,7 +41,7 @@ const Clouds = () => {
   }, []);
 
   return (
-    <div className="clouds-container" style={{ position: 'absolute', top: 0, left: 0, zIndex: 10 }}>
+    <div className="clouds-container" style={{ position: 'absolute', top: 0, left: 0, zIndex: 10}}>
       {clouds.map(cloud => (
         <img
           key={cloud.id}
