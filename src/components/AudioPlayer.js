@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import './AudioPlayer.css';
-import audiopath from '../assets/sound.mp3';
+import audiopath from '../assets/zelda.mp3';
 
 const AudioPlay = () => {
   const [isPlaying, setIsPlaying] = useState(false);

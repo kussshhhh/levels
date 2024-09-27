@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { PlusCircle, ZoomIn, ZoomOut } from 'lucide-react';
+import { PlusCircle, Maximize2 } from 'lucide-react';
 
 const Node = ({ id, level, text, position, scale, onAddNode, onUpdateNode, onDrag }) => {
   const [nodeText, setNodeText] = useState(text);
@@ -46,34 +46,21 @@ const Node = ({ id, level, text, position, scale, onAddNode, onUpdateNode, onDra
   }, [isDragging, dragOffset, id, onDrag, scale]);
 
   return (
-    <div
-      ref={nodeRef}
-      style={{
-        position: 'absolute',
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-        transform: `scale(${scale})`,
-        transformOrigin: 'top left',
-        border: '2px solid black',
-        borderRadius: '10px',
-        padding: '10px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        cursor: 'move',
-        backgroundColor: 'white',
-      }}
-      onMouseDown={handleMouseDown}
-    >
-      <div>Level {level}</div>
-      <textarea
-        value={nodeText}
-        onChange={handleTextChange}
-        style={{ resize: 'both', minWidth: '100px', minHeight: '50px' }}
-      />
-      <PlusCircle onClick={() => onAddNode(id)} style={{ cursor: 'pointer' }} />
+    <div className="node-container" style={{ left: `${position.x}px`, top: `${position.y}px`, transform: `scale(${scale})` }}>
+      <div ref={nodeRef} className="node-brick" onMouseDown={handleMouseDown}>
+        <div className="node-level">Level {level}</div>
+        <textarea
+          value={nodeText}
+          onChange={handleTextChange}
+          className="node-textarea"
+        />
+        <Maximize2 className="node-fullscreen" size={16} />
+      </div>
+      <div className="node-add-button" onClick={() => onAddNode(id)}>
+        <PlusCircle size={24} />
+      </div>
     </div>
   );
 };
 
-export default Node 
+export default Node;

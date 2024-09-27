@@ -4,11 +4,26 @@ import Node from './Node';
 import AudioPlay from './AudioPlayer';
 
 const Canvas = () => {
-  const [nodes, setNodes] = useState([
-    { id: 1, level: 1, text: '', position: { x: 50, y: 400 } },
-  ]);
-  const [scale, setScale] = useState(1);
+  const [nodes, setNodes] = useState( () => {
+    const savedNodes = localStorage.getItem('canvasNodes') ;
+    return savedNodes ? JSON.parse(savedNodes) : [
+      { id: 1, level: 1, text: '', position: { x: 50, y: 400 } },
+
+    ]
+  });
+  const [scale, setScale] = useState(()=>{
+    const savedScale = localStorage.getItem('canvasScale') ;
+    return savedScale ? parseFloat(savedScale) : 1 ;
+  });
   const canvasRef = useRef(null);
+
+  useEffect(()=>{
+    localStorage.setItem('canvasNodes', JSON.stringify(nodes)) ;
+  }, [nodes]) ;
+
+  useEffect(() => {
+    localStorage.setItem('canvasScale', scale.toString()) ;
+  }, [scale]) ;
 
   const addNode = (parentId) => {
     const parentIndex = nodes.findIndex((node) => node.id === parentId);
